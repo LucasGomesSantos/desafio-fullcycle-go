@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN go build -o main main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o main main.go
 
 #Cria o para lidar com binario e diminuir o tamanho da imagem com arquivos relevantes
 FROM scratch
